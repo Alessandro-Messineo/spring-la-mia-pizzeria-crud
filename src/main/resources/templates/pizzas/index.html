@@ -12,6 +12,14 @@
 
         <h1 class="mb-4">Le nostre pizze</h1>
 
+        <form th:action="@{/}" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" th:value="${search}" class="form-control"
+                    placeholder="Cerca pizza per nome...">
+                <button class="btn btn-primary" type="submit">Cerca</button>
+            </div>
+        </form>
+
         <table class="table table-striped">
             <thead>
                 <tr>
