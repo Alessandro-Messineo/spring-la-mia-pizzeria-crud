@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}">
+
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+    <div class="container mt-4">
+
+        <h1 class="mb-4">Le nostre pizze</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Prezzo</th>
+                    <th>Dettagli</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pizza : ${pizza}" th:object="${pizza}">
+                    <td>
+                        <img th:src="*{urlImg}" th:alt="*{urlImg}" width="100">
+                    </td>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{price} + '&euro;'"></td>
+                    <td>
+                        <a class="btn btn-sm btn-info">
+                            Visualizza
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div th:if="${pizza.size() == 0}" class="alert alert-warning">
+            Non ci sono pizze disponibili.
+        </div>
+
+    </div>
+
+</body>
+
+</html>
