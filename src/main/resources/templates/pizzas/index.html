@@ -29,7 +29,7 @@
                     <td th:text="*{name}"></td>
                     <td th:text="*{price} + '&euro;'"></td>
                     <td>
-                        <a class="btn btn-sm btn-info">
+                        <a th:href="@{'/' + *{id}}" class="btn btn-sm btn-info">
                             Visualizza
                         </a>
                     </td>
