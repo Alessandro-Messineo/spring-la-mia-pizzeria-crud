@@ -20,7 +20,7 @@ public class PizzaController {
     private PizzaRepository repository;
 
     @GetMapping
-    public String index(Model model, @RequestParam(name = "search", required = false) String search) {
+    public String index(Model model, @RequestParam(name = "search", required = false, defaultValue = "") String search) {
 
         List<Pizza> pizza;
 
@@ -32,7 +32,7 @@ public class PizzaController {
 
         model.addAttribute("pizza", pizza);
         model.addAttribute("search", search);
-        
+
         return "pizzas/index";
     }
 
