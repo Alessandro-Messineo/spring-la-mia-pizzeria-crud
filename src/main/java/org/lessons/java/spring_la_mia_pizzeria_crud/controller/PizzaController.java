@@ -69,4 +69,24 @@ public class PizzaController {
         return "redirect:/";
     }
 
+    @GetMapping("pizza/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+
+        model.addAttribute("pizza", repository.findById(id).get());
+
+        return "pizzas/form-edit-pizza";
+    }
+
+    @PostMapping("pizza/edit/{id}")
+    public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            return "pizzas/form-edit-pizza";
+        }
+
+        repository.save(formPizza);
+
+        return "redirect:/";
+    }
+
 }

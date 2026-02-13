@@ -33,7 +33,7 @@ public class Pizza {
     private String urlImg;
 
     @NotNull(message = "Enter price")
-    @DecimalMin(value = "0.0", inclusive = true)
+    @DecimalMin(value = "0.0", inclusive = true, message ="Price must be greater than or equal to 0")
     @Column(nullable = false)
     private Double price;
 
