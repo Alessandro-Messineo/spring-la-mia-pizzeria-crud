@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <form id="pizza-form" th:object="${pizza}" th:action="@{/create}" method="post">
+
+
+        <div th:if="${#fields.hasErrors()}">
+            <ul>
+                <li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li>
+            </ul>
+        </div>
+
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}">
+        <!-- <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err: ${#fields.errors('name')}" th:text="${err}"></li>
+            </ul>
+        </div> -->
+
+        <label for="description">Ingredients:</label>
+        <input type="text" id="description" th:field="*{description}">
+        <!-- <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err: ${#fields.errors('description')}" th:text="${err}"></li>
+            </ul>
+        </div> -->
+
+        <label for="urlImg">Image URL:</label>
+        <input type="text" id="urlImg" th:field="*{urlImg}">
+        <!-- <div th:if="${#fields.hasErrors('urlImg')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err: ${#fields.errors('urlImg')}" th:text="${err}"></li>
+            </ul>
+        </div> -->
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" th:field="*{price}">
+        <!-- <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err: ${#fields.errors('price')}" th:text="${err}"></li>
+            </ul>
+        </div> -->
+
+        <button type="submit" class="btn btn-primary">Aggiungi</button>
+    </form>
+
+</body>
+
+</html>

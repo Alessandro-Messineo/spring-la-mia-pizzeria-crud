@@ -12,6 +12,10 @@
 
         <h1 class="mb-4">Le nostre pizze</h1>
 
+        <form th:action="@{/create}" method="get">
+            <button type="submit" class="btn btn-primary mb-4">Aggiungi pizza</button>
+        </form>
+
         <form th:action="@{/}" class="mb-3">
             <div class="input-group">
                 <input type="text" name="search" th:value="${search}" class="form-control"
@@ -32,12 +36,12 @@
             <tbody>
                 <tr th:each="pizza : ${pizza}" th:object="${pizza}">
                     <td>
-                        <img th:src="*{urlImg}" th:alt="*{urlImg}" width="100">
+                        <img th:src="*{urlImg}" alt="error img" width="100">
                     </td>
                     <td th:text="*{name}"></td>
                     <td th:text="*{price} + '&euro;'"></td>
                     <td>
-                        <a th:href="@{'/' + *{id}}" class="btn btn-sm btn-info">
+                        <a th:href="@{'/pizza/' + *{id}}" class="btn btn-sm btn-primary">
                             Visualizza
                         </a>
                     </td>
