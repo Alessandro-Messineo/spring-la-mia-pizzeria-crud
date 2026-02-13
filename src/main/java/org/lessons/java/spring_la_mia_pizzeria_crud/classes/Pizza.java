@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -17,15 +19,22 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Enter name of pizza")
+    @Size(max = 100)
+    @Column(nullable = false, length = 100)
     private String name;
 
+    @NotBlank(message = "Enter description of pizza")
+    @Column(nullable = false, length = 200)
     private String description;
 
-    @Column(name = "url_img")
+    @Column(name = "url_img", length = 200)
+    @Size(max = 200)
     private String urlImg;
 
-    @NotNull
+    @NotNull(message = "Enter price")
+    @DecimalMin(value = "0.0", inclusive = true)
+    @Column(nullable = false)
     private Double price;
 
     public Pizza() {
